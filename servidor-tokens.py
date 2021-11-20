@@ -14,13 +14,14 @@ def hello_world():
 def crear():
     nombre = request.args.get("nombre")
     id_persona = request.args.get("id")
-    id_rol = request.args.get("id_rol")    
+    id_rol = request.args.get("id_rol")
     try:
+        
         secret_key = os.environ.get("JWT_SECRET_KEY")
         token = jwt.encode({'nombre': nombre, 'id': id_persona, 'rol': id_rol}, secret_key, algorithm='HS256')
         return token
     except Exception as e:
- 	    return ""
+ 	    return "KO"
 
 @app.route("/validar-token")
 def validar():
